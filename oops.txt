@@ -1,0 +1,471 @@
+﻿//Task 2.1-Object-Oriented Programming (OOP) [Classes, objects, constructors, and methods]
+
+Q1.Introduction to OOP principles.
+
+       >>Object-Oriented Programming (OOP) is a programming paradigm based on objects, 
+         which encapsulate data (fields/properties) and behavior (methods). 
+       >>OOP allows developers to build modular, scalable, and reusable code.
+       >>C# is a strongly typed, object-oriented language that fully supports OOP principles.
+       >>Based on Classes and objects.
+       >>OOPs is about creating objects that contain both methods and data.
+
+     
+    -> Object-oriented programming has several advantages over procedural programming:-
+        a)OOP is faster and easier to execute.
+        b)OOP provides a clear structure for the programs.
+        c)OOP helps to keep the C# code DRY "Don't Repeat Yourself", and makes the code easier to maintain, modify and debug.
+        d)OOP makes it possible to create full reusable applications with less code and shorter development time.
+
+     -> Benefits:
+        a)Modularity: Simplifies complex code by dividing it into smaller objects.
+        b)Reusability: Enables reuse of existing code.
+        c)Flexibility: Makes it easy to modify parts of the application.
+        d)Scalability: Supports system growth and enhancements.
+  
+  Four pillars of OOPS:-
+          1) Encapsulation:- >>It encapsulate the fields and methods/properties in a single unit.
+                             >>The field cannot be accessed from outside without the property
+                             >>If the field is accessed through properth. It will work but it violationg encapsulation.
+
+          2) Abstraction:-  >>Showing only required things and hide the background details.
+                            >>Abstraction is an OOP principle that focuses on hiding the implementation details and showing only the essential features of an object.
+                            >>In simpler terms, it allows us to define behavior without exposing the complexity of how it’s achieved.
+                            >>In C#, abstraction is implemented using:
+                                i)Abstract Classes
+                               ii)Interfaces
+
+          3) Inheritance:-
+				            >> Allows to define a New Class (Derived Class) based on Existing Class (Base Class);
+				            >> It consists of all the class methods and class Members that exists in Parent Class
+				            >> Base Class    : Class that is being inherited              -> (Can also be referred as Parent Class)
+				            -> Derived Class : Class that is inheriting from Base Class	  -> (Can also be referred as Child Class)
+				            -> Syntax :
+
+						            class BaseClass {
+							            // Code for Base Class
+						            }
+						            class DerivedClass : BaseClass {
+							            // Code for Derived Class
+						            }
+
+          4)Polymorphism:-
+                           >>Polymorphism means "many forms" and allows methods or functions to behave differently based 
+                           on the object that invokes them. It enables reusability and flexibility in code.
+
+                            Types of Polymorphism:
+
+                              1)Compile-time Polymorphism (Method Overloading):-
+
+                               ->Achieved by having multiple methods with the same name but different parameters.
+                                 Example:
+                            
+                                            class Calculator
+                                            {
+                                                public int Add(int a, int b) => a + b;
+                                                public double Add(double a, double b) => a + b;
+                                            }
+
+                              2)Run-time Polymorphism (Method Overriding);-
+
+                               ->Achieved through inheritance and the use of the virtual and override keywords.
+                                
+                                  Example:-
+                           
+                                            class Animal
+                                            {
+                                                public virtual void Sound() => Console.WriteLine("Animal makes sound");
+                                            }
+                                            class Dog : Animal
+                                            {
+                                                public override void Sound() => Console.WriteLine("Dog barks");
+                                            }
+
+
+
+                              * Key Points:
+                                   >>Overloading happens within the same class.
+                                   >>Overriding happens in derived classes using inheritance.
+                                   >>It promotes code flexibility and scalability.
+
+
+  
+
+
+
+
+
+
+
+ Q2 : What are Classes and Objects?
+
+
+   1. Class
+       ->Declared using the class keyword.
+       ->The name of a class follows Pascal Case naming convention.
+
+       * Syntax:
+            class MyClass 
+              {
+                   // Members of the class
+              }
+         ->A user-defined data type that represents both:-
+              ->>State: Defined by the class properties or attributes.
+              ->>Behavior: Defined by the methods or actions that an object can perform.
+         ->Blueprint/Template for creating individual objects.
+
+        * A class is composed of:-
+            ->Name: The identifier of the class.
+            ->Attributes: Variables or properties describing the state.
+            ->Operations: Methods that represent behavior.
+            ->Variables of type class are reference type variables with a default value of null.
+
+        * Types of Classes:
+            ->Base Class: A class whose members can be inherited by other classes (also called a parent class).
+            ->Derived Class: A class that inherits members from another class (also called a child class).
+            ->Abstract Class: Cannot be instantiated.
+                            ->Serves as a base class for other classes.
+                            ->Can contain both abstract methods (methods without implementation) and non-abstract methods.
+                     Example:
+
+                        >> abstract class Animal
+                            {
+                                public abstract void MakeSound(); // Abstract method
+                                public void Display() // Non-abstract method
+                                {
+                                    Console.WriteLine("This is an animal!");
+                                }
+                            }   
+
+
+     2. Object
+        ->An instance of a class.
+        ->Represents a real-world entity that can perform activities (behavior).
+        ->Accesses all class members through the dot operator (.).
+
+        *Syntax:
+
+             ->MyClass obj = new MyClass(); // Create an object
+             ->MyClass obj = new(); // Simplified syntax (C# 9.0 and later)
+              
+              ->obj is the object of the class MyClass.
+              ->new is used to allocate memory for the object.
+              ->MyClass() invokes the constructor to initialize the object.
+
+
+  Q.3: Constructors in C#
+
+
+        ->A constructor is a special method used in a class to initialize its variables and allocate memory.
+        ->Its name is always identical to the name of the class it belongs to.
+
+        * Key Characteristics:-
+
+         ->Does not return any value (not even void).
+         ->Automatically invoked when an object is created.
+           
+           *Syntax:
+
+              class MyClass
+                {
+                    // Constructor
+                    MyClass()
+                    {
+                        // Initialization code
+                    }
+                }
+
+          * Types of Constructors:
+
+                1)Default / Parameterless Constructor:
+
+                    ->A constructor that takes no arguments.
+                    ->Can be explicitly defined by the programmer or implicitly defined by the compiler.
+                   
+                 
+                 * Example:-
+
+                    class MyClass
+                    {
+                        public int Value;
+
+                        // Default Constructor
+                        public MyClass()
+                        {
+                            Value = 0;
+                        }
+                    }
+
+                    Default Constructors are of two types:-
+                       1)System-Defined Default Constructor:-
+
+                         ->Created automatically by the compiler when no constructor is explicitly defined.
+                         ->Initializes class variables with their default values:
+                                "int → 0
+                                bool → false
+                                string → null"
+
+                        2)User-Defined Default Constructor:-
+                          ->Explicitly created by the programmer.
+                          ->Does not take arguments but can include custom initialization logic.
+
+
+                  2)Parameterized Constructor:
+
+                     ->Allows passing arguments to initialize the object with specific values.
+                     ->Must be explicitly defined.
+                       Example:
+                    
+                            class MyClass
+                            {
+                                public int Value;
+
+                                // Parameterized Constructor
+                                public MyClass(int value)
+                                {
+                                    Value = value;
+                                }
+                            }
+
+
+                   3)Copy Constructor:
+
+                       ->Creates a new object by copying the values of an existing object.
+                       ->Accepts an object of the same class as a parameter.
+                        Example:
+                    
+                            class MyClass
+                            {
+                                public int Value;
+
+                                // Copy Constructor
+                                public MyClass(MyClass obj)
+                                {
+                                    Value = obj.Value;
+                                }
+                            }
+
+
+                    4)Static Constructor:
+
+                      -> A constructor declared with the static keyword.
+                      -> Used to initialize static members of the class.
+                      -> Automatically invoked once, before any static members are accessed or any object is created.
+                      -> Cannot take parameters.
+
+                          Example:-
+                    
+                                class MyClass
+                                {
+                                    public static int StaticValue;
+
+                                    // Static Constructor
+                                    static MyClass()
+                                    {
+                                        StaticValue = 100;
+                                    }
+                                }
+
+                          *Additional Notes:
+
+                            ->If no constructor is explicitly defined, the compiler generates
+                               an implicit default constructor that initializes the class variables with their default values.
+                            ->Constructors are explicitly invoked when an object is created using the new keyword.
+                            ->They ensure that objects are always in a valid state when initialized.
+
+
+
+
+    Q4: Methods: defining and calling instance methods.
+         
+         ->In C#, instance methods are functions defined in a class that work with the instance of the class.
+         ->These methods operate on instance variables and are accessed through objects of the class.
+
+            Definition:
+              ->Instance methods are non-static methods defined within a class.
+              ->They are tied to a specific instance of the class and can access the instance's fields and properties.
+
+            Purpose:
+            ->To encapsulate behaviors related to the object.
+            ->To operate on or retrieve data from instance variables.
+
+              Example of Defining Instance Methods:-
+
+
+
+                class Student
+                {
+                    // Instance variables
+                    public string Name;
+                    public int Age;
+
+                    // Constructor to initialize instance variables
+                    public Student(string name, int age)
+                    {
+                        Name = name;
+                        Age = age;
+                    }
+
+                    // Instance method to display details
+                    public void DisplayDetails()
+                    {
+                        Console.WriteLine($"Name: {Name}, Age: {Age}");
+                    }
+
+                    // Instance method to update age
+                    public void UpdateAge(int newAge)
+                    {
+                        Age = newAge;
+                        Console.WriteLine($"Age updated to {Age}");
+                    }
+                }
+
+          * Calling Instance Methods
+                ->Create an object of the class using the new keyword.
+                ->Call the method using the dot operator (.).
+
+
+          * Example of Calling Instance Methods:-
+
+
+                    class Program
+                    {
+                        static void Main(string[] args)
+                        {
+                            // Create an instance of the Student class
+                            Student student1 = new Student("Alice", 20);
+
+                            // Call the DisplayDetails method
+                            student1.DisplayDetails();  // Output: Name: Alice, Age: 20
+
+                            // Call the UpdateAge method to change the age
+                            student1.UpdateAge(21);     // Output: Age updated to 21
+
+                            // Call the DisplayDetails method again
+                            student1.DisplayDetails();  // Output: Name: Alice, Age: 21
+                        }
+                    }
+
+            * Instance vs. Static Methods:
+
+                ->Instance methods require an object to be called.
+                ->Static methods belong to the class and cannot access instance variables or methods unless passed explicitly.
+
+
+
+  Q5) Encapsulation: using private fields and public methods.
+       
+       >>It encapsulate the fields and methods/properties in a single unit.
+       >>The field cannot be accessed from outside without the property
+       >>If the field is accessed through properth. It will work but it violationg encapsulation.
+
+      
+      Example:-
+
+
+                        class OOPS_Concept
+                        {
+                            // Private fields to hold the values of the properties
+                            private string name; // Stores the name of the person
+                            private int age;     // Stores the age of the person
+
+                            // Protected field that can be accessed by derived classes
+                            protected int id;    // Stores the ID of the person
+
+                            // Public property for encapsulating the `name` field
+                            public string Name
+                            {
+                                get
+                                {
+                                    return name; // Returns the value of the private `name` field
+                                }
+                                set
+                                {
+                                    // Validates that the value is not null or empty
+                                    if (!string.IsNullOrEmpty(value))
+                                    {
+                                        name = value; // Assigns the validated value to the private `name` field
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Name cannot be empty"); // Displays a validation error
+                                    }
+                                }
+                            }
+
+                            // Public property for encapsulating the `age` field
+                            public int Age
+                            {
+                                get
+                                {
+                                    return age; // Returns the value of the private `age` field
+                                }
+                                set
+                                {
+                                    // Validates that the age is a positive number
+                                    if (value > 0)
+                                    {
+                                        age = value; // Assigns the validated value to the private `age` field
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Age cannot be negative"); // Displays a validation error
+                                    }
+                                }
+                            }
+
+                            // Constructor to initialize the fields with provided values
+                            public OOPS_Concept(string name, int age, int id)
+                            {
+                                this.Name = name; // Assigns the value using the `Name` property
+                                this.Age = age;   // Assigns the value using the `Age` property
+                                this.id = id;     // Directly assigns the value to the protected `id` field
+                            }
+
+                            // Public method to display the details of the object
+                            public void Display()
+                            {
+                                Console.WriteLine($"Name: {name} Age: {age} ID: {id}"); // Outputs the object's details
+                            }
+                        }
+
+                        // Main class to execute the program
+                        class OOPS
+                        {
+                            static void Main()
+                            {
+                                // Create an object of the OOPS_Concept class
+                                OOPS_Concept xx = new OOPS_Concept("bhwbd", 65, 5); // Initialize with valid values
+
+                                // Attempt to set invalid values
+                                xx.Name = "";    // Invalid name (empty string)
+                                xx.Age = -67;    // Invalid age (negative value)
+
+                                // Display the object's details
+                                xx.Display(); // Shows the details of the object (including unchanged values due to validation)
+                            }
+                        }
+
+      
+           * Advantages of Encapsulation:-
+                1)Data Hiding:
+                ->Internal details of the class are hidden from the outside world, and only necessary information is exposed via public methods or properties.
+
+                2)Control Over Data:
+                ->Encapsulation provides control over the data by allowing validation and logic inside the get and set methods or properties.
+
+                3)Improved Code Maintenance:
+                ->Changes to the class implementation do not affect external code, as long as the public interface remains the same.
+
+                4)Code Reusability:
+                ->Encapsulation ensures modularity, making it easier to reuse code in other parts of the application.
+
+                5)Increased Security:
+                ->By restricting direct access to sensitive fields, encapsulation reduces the risk of unintended changes to the data.
+
+                6)Ease of Testing and Debugging:
+                ->Encapsulated code is easier to debug and test since the logic is confined within well-defined boundaries.
+      
+
+
+     
+

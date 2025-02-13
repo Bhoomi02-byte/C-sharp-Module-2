@@ -66,6 +66,11 @@ namespace Module_2
             Console.WriteLine($"The sum of 5.66 and 8.78 is: {Sum(5.66,8.78)}\n");
 
 
+            //Encapsulation
+
+
+
+
 
 
 
