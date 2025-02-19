@@ -74,7 +74,7 @@ class BankAccount
     public virtual void DisplayAccountDetails()
     {
         Console.WriteLine($"\nThe Account Number is: {accountNumber}");
-        Console.WriteLine($"The Current Balance is: {balance}");
+        Console.WriteLine($"The Current Balance is: {balance:F2}");
 
     }
 
@@ -348,7 +348,7 @@ namespace Module_2
 
                             if (choice == 1)
                             {
-                                Console.WriteLine($"Your current balance is: {account.GetBalance}");
+                                Console.WriteLine($"Your current balance is: {account.GetBalance:F2}");
                             }
                             else if (choice == 2)
                             {
@@ -357,7 +357,7 @@ namespace Module_2
                                 if (double.TryParse(Console.ReadLine(), out depositAmount))
                                 {
                                     account.Deposit(depositAmount);
-                                    Console.WriteLine($"Amount deposited successfully! New balance: {account.GetBalance}");
+                                    Console.WriteLine($"Amount deposited successfully! New balance: {account.GetBalance:F2}");
                                 }
                                 else
                                 {
@@ -372,7 +372,7 @@ namespace Module_2
                                 {
                                     
                                     account.Withdraw(withdrawAmount);
-                                    Console.WriteLine($"Amount withdrawn successfully! New balance: {account.GetBalance}");
+                                    Console.WriteLine($"Amount withdrawn successfully! New balance: {account.GetBalance:F2}");
                                     
                                 }
                                 else
@@ -383,7 +383,7 @@ namespace Module_2
                             else if (choice == 4)
                             {
                                 // Update the account in the file
-                                accounts[i] = $"{account.GetAccountNumber},{account.AccountHolderName},{account.GetAge},{account.GetBalance},{accountType}";
+                                accounts[i] = $"{account.GetAccountNumber},{account.AccountHolderName},{account.GetAge},{account.GetBalance:F2},{accountType}";
                                 File.WriteAllLines(FilePath, accounts);
 
                                 Console.WriteLine("Logged out successfully!");
@@ -463,7 +463,7 @@ namespace Module_2
                 new SavingsAccount(accountNumber, initialBalance,accountHolderName,age) : new CurrentAccount(accountNumber, initialBalance,accountHolderName,age);
 
             // Save account details to file
-            string accountDetails = $"{accountNumber},{accountHolderName},{age},{newAccount.GetBalance},{accountType}";
+            string accountDetails = $"{accountNumber},{accountHolderName},{age},{newAccount.GetBalance:F2},{accountType}";
             File.AppendAllText(FilePath, accountDetails + Environment.NewLine);
 
             Console.WriteLine("\nAccount created successfully!");
@@ -543,7 +543,7 @@ namespace Module_2
                 if (long.Parse(details[0]) == account.GetAccountNumber)
                 {
                     // Update balance
-                    accounts[i] = $"{account.GetAccountNumber},{account.AccountHolderName},{account.GetAge},{account.GetBalance},{details[4]}";
+                    accounts[i] = $"{account.GetAccountNumber},{account.AccountHolderName},{account.GetAge},{account.GetBalance:F2},{details[4]}";
                     break;
                 }
             }
