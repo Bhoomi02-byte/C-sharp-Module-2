@@ -464,6 +464,10 @@ Q1.Introduction to OOP principles.
 
                 6)Ease of Testing and Debugging:
                 ->Encapsulated code is easier to debug and test since the logic is confined within well-defined boundaries.
+
+
+
+
       
 
 
