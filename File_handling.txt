@@ -1,0 +1,125 @@
+Task 4:-
+
+1.Create an IFileService interface for reading and writing files.
+2.Implement FileService using StreamReader and StreamWriter.
+3.Inject the file service into controllers or services using Dependency Injection (DI).
+4.Ensure unit testability by mocking file operations.
+
+1)  Step 1: Define the IFileService Interface:-
+
+               ->The interface will define methods for reading and writing files. 
+               ->This abstraction makes the code testable and allows swapping the implementation later if needed.
+
+           
+                public interface IFileService
+                {
+                    string ReadFile(string filePath);
+                    void WriteFile(string filePath, string content);
+                }
+
+2) Step 2: Implement the FileService Class:-
+
+               ->The implementation of IFileService will reading files and StreamWriter for writing files. 
+               ->This implementation will handle basic file operations.
+
+
+
+                using System;
+                using System.IO;
+
+                public class FileService : IFileService
+                {
+                    public string ReadFile(string filePath)
+                    {
+                        if (!File.Exists(filePath))
+                        {
+                            throw new FileNotFoundException("File not found", filePath);
+                        }
+
+                        using (StreamReader reader = new StreamReader(filePath))
+                        {
+                            return reader.ReadToEnd(); // Reads the entire file content as a string
+                        }
+                    }
+
+                    public void WriteFile(string filePath, string content)
+                    {
+                        using (StreamWriter writer = new StreamWriter(filePath, false)) // `false` overwrites the file
+                        {
+                            writer.Write(content);
+                        }
+                    }
+                }
+
+
+   Dependency Injection:-
+                ->Dependency Injection (DI) is a design pattern used to achieve Inversion of Control (IoC).
+                ->It involves providing ("injecting") the dependencies (objects or services a class needs) into a class, rather than having the class create them internally. 
+                ->This makes the code more modular, testable, and easier to maintain.
+
+                Key Terms
+
+                ->Dependency: Any service, object, or resource a class depends on to perform its functionality (e.g., IFileService).
+                ->Injection: Supplying the dependency to the class (or injecting it) instead of letting the class instantiate it itself.
+
+
+                Benefits of Dependency Injection
+                1)Loose Coupling: The class does not depend on specific implementations but rather on abstractions (interfaces).
+                2)Testability: Dependencies can be mocked or replaced in unit tests.
+                3)Scalability: Easier to replace or extend implementations (e.g., swap FileService for a different implementation).
+                4)Maintainability: Reduces hard-coded dependencies, making code easier to modify.
+
+
+                Types of Dependency injection:-
+                1)Constructor Injection:
+                    ->Dependencies are provided through a class constructor
+
+                    More detailing with example:-
+                     
+                     public class MyService
+                    {
+                        private readonly IFileService _fileService;
+                        public MyService(IFileService fileService)
+                        {
+                            _fileService = fileService;
+                        }
+                        public void ProcessFile(string filePath)
+                        {
+                            string content = _fileService.ReadFile(filePath);
+                            // Process the file content
+                        }
+                    }
+
+                2)Property Injection:
+
+                        ->Dependencies are provided through public properties.
+                        ->This allows dependencies to be set after the object is constructed.
+                        Example:
+                       
+                        public class MyClass
+                        {
+                            public IMyDependency MyDependency { get; set; }
+                        }
+
+                3)Method Injection:
+
+                        ->Dependencies are provided through method parameters.
+                        ->This is useful for injecting dependencies that are only used by specific methods.
+                        Example:
+                        
+                        public class MyClass
+                        {
+                            public void MyMethod(IMyDependency myDependency)
+                            {
+                                        // Use myDependency
+                            }
+                        }
+
+                -> Each type of Dependency Injection has its own use cases and advantages. 
+                -> Constructor Injection is generally preferred for mandatory dependencies, 
+                -> while Property and Method Injection can be used for optional dependencies or for injecting dependencies into legacy code where constructor changes are not feasible.
+                     
+
+              
+
+
